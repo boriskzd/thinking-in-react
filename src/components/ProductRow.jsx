@@ -1,6 +1,4 @@
 export default function ProductRow({ product }) {
-	console.log(product);
-
 	// if product is out of stock, display it RED
 	const name = product.stocked ? (
 		product.name
