@@ -1,11 +1,15 @@
-export default function SearchBar() {
+export default function SearchBar({ filterText, inStockOnly }) {
 	return (
 		<form>
-			<input name="myInput" placeholder="Search..." />
+			<input type="text" placeholder="Search..." value={filterText} />
 			<div>
 				<label>
-					<input type="checkbox" name="myCheckbox" /> Only show
-					products in stock
+					<input
+						type="checkbox"
+						checked={inStockOnly}
+						name="myCheckbox"
+					/>{" "}
+					Only show products in stock
 				</label>
 			</div>
 		</form>

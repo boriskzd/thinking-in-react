@@ -2,7 +2,7 @@ import ProductRow from "./ProductRow";
 import ProductCategoryRow from "./ProductCategoryRow";
 import React from "react";
 
-export default function ProductTable({ products }) {
+export default function ProductTable({ products, filterText, inStockOnly }) {
 	// Fruits, Vegetables
 	const categories = {};
 
