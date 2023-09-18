@@ -24,9 +24,15 @@ export default function ProductTable({ products, filterText, inStockOnly }) {
 					<React.Fragment key={category}>
 						<ProductCategoryRow category={category} />
 						{categories[category].map((item) => {
+							// item.name.toLowerCase().includes(filterText) --- product must contain entered text
 							// !inStockOnly --- when checkbox is unchecked, show all items
 							// inStockOnly && item.stocked --- when checkbox is checked, show only stocked items
-							if (!inStockOnly || (inStockOnly && item.stocked)) {
+							if (
+								item.name
+									.toLowerCase()
+									.includes(filterText.toLowerCase()) &&
+								(!inStockOnly || (inStockOnly && item.stocked))
+							) {
 								return (
 									<ProductRow
 										product={item}
