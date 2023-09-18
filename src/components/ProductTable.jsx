@@ -23,9 +23,18 @@ export default function ProductTable({ products, filterText, inStockOnly }) {
 				{Object.keys(categories).map((category) => (
 					<React.Fragment key={category}>
 						<ProductCategoryRow category={category} />
-						{categories[category].map((item) => (
-							<ProductRow product={item} key={item.name} />
-						))}
+						{categories[category].map((item) => {
+							// !inStockOnly --- when checkbox is unchecked, show all items
+							// inStockOnly && item.stocked --- when checkbox is checked, show only stocked items
+							if (!inStockOnly || (inStockOnly && item.stocked)) {
+								return (
+									<ProductRow
+										product={item}
+										key={item.name}
+									/>
+								);
+							}
+						})}
 					</React.Fragment>
 				))}
 			</>
