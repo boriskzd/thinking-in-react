@@ -1,13 +1,20 @@
+import React from "react";
+// redux
+import { useSelector } from "react-redux";
+// components
 import ProductRow from "./ProductRow";
 import ProductCategoryRow from "./ProductCategoryRow";
-import React from "react";
+// hardcoded data
+import PRODUCTS from "../utils/products.json";
 
-export default function ProductTable({ products, filterText, inStockOnly }) {
+export default function ProductTable() {
+	const filterText = useSelector((state) => state.input.filterText);
+	const inStockOnly = useSelector((state) => state.input.inStockOnly);
 	// Fruits, Vegetables
 	const categories = {};
 
 	// create data object
-	products.forEach((item) => {
+	PRODUCTS.forEach((item) => {
 		const { category } = item;
 
 		if (!categories[category]) {

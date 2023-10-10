@@ -1,24 +1,26 @@
-export default function SearchBar({
-	filterText,
-	inStockOnly,
-	onFilterTextChange,
-	onInStockOnlyChange,
-}) {
+import { useSelector, useDispatch } from "react-redux";
+import { changeText, toggleCheckbox } from "../store/inputSlice";
+
+export default function SearchBar() {
+	const filterText = useSelector((state) => state.input.filterText);
+	const inStockOnly = useSelector((state) => state.input.inStockOnly);
+	const dispatch = useDispatch();
+
 	return (
 		<form>
 			<input
 				type="text"
 				placeholder="Search..."
 				value={filterText}
-				onChange={(e) => onFilterTextChange(e.target.value)}
+				onChange={(e) => dispatch(changeText(e.target.value))}
 			/>
 			<div>
 				<label>
 					<input
 						type="checkbox"
-						checked={inStockOnly}
 						name="myCheckbox"
-						onChange={(e) => onInStockOnlyChange(e.target.checked)}
+						checked={inStockOnly}
+						onChange={(e) => dispatch(toggleCheckbox())}
 					/>{" "}
 					Only show products in stock
 				</label>
